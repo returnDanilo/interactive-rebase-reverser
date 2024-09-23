@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.0] - 2024-09-23
+### Changed
+- Add a message to the top and remove comments at the bottom to give a visual cue this plugin is being used.
+- Rename project to be more friendly and descriptive.
+- Add help tags to make it easier to find the help page.
+- Reword readme.
+- Reword vim help page.
+- Add updated screenshots to readme.
+
+### Fixed
+- Fix cursor position changing when writing to file.
+
 ## [1.0.0] - 2019-05-24
 ### Fixed
 - Correct bug where saving without exiting reversed the commits displayed.

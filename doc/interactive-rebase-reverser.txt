@@ -1,0 +1,18 @@
+*interactive-rebase-reverser.txt* display a git interactive rebase in reverse
+
+Version: 1.1.0
+License: Apache-2.0
+Author: Sal Ferrarello <https://salferrarello.com>
+Contributors: Danilo Rezende <https://github.com/returnDanilo>
+
+INTERACTIVE REBASE REVERSER                      *interactive-rebase-reverser*
+============================================================================
+             *vim-interactive-rebase-reverser* *git-interactive-rebase-reverser*
+
+
+The default behaviour of git it to display RECENT commits at the top
+when using `git log` and OLDER commits at the top when using
+`git rebase --interactive`. This can be confusing! Or unsettling!
+
+This plugin fixes this. It shows you a reversed list of commits when
+editing the rebase file, but uses the usual order when writing to disk.

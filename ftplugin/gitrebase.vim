@@ -1,29 +1,35 @@
-" interactive-rebase-reverse.vim - Reverse the order of commits in an interactive rebase
-" Author:  Sal Ferrarello <https://salferrarello.com/>
-" Version: 1.0.0
-
-" Reverse the order of all lines that do NOT:
-" - Begin with #
-" - nor are a blank link
-function! s:Reverse()
-  global!/\(^#\)\|\(^$\)/m0
-endfunction
-
-" Ensure we only load this file once.
-if exists('g:ft_interactive_rebase_reverse')
+" Only load this plugin once.
+if exists('g:interactive_rebase_reverser')
   finish
 endif
-let g:ft_interactive_rebase_reverse = 1"
+let g:interactive_rebase_reverser = 1
 
-" Reverse the order of all commits in the git interactive rebase screen,
-" when this filetype (gitrebase) is loaded.
+function! s:Reverse()
+  let l:previous_cursor_pos = getpos(".")
+
+  " Delete all comments and emtpy lines.
+  silent global/\(^#\)\|\(^$\)/d
+
+  " Reverse all lines.
+  global/.*/m0
+
+  " Add message at the top.
+  0put ='# Reversed by interactive-rebase-reverser!'
+  1put =''
+
+  call setpos('.', l:previous_cursor_pos)
+endfunction
+
+" Execute once when this filetype (gitrebase) is loaded.
 call s:Reverse()
 
-" Set an autocmd to run when the Buffer is written
-augroup fe_interactive_rebase_reverse
+augroup interactive_rebase_reverser
 	autocmd!
-	" Before saving (un)reverse the order of all commits.
+	" (un)reverse lines before writing the file so that git sees the commits
+	" in the order it expects to see normally.
 	autocmd BufWritePre <buffer> call s:Reverse()
-	" After saving reverse the order of the commits again.
+	" Just after the file is written, reverse buffer lines again to make sure
+	" your buffer always has reversed commits, while the saved file will
+	" always have the commit order git is expecting to parse.
 	autocmd BufWritePost <buffer> call s:Reverse()
 augroup END

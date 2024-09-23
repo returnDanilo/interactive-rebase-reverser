@@ -1,36 +1,31 @@
-# Interactive Rebase Reverse Vim
+# Interactive Rebase Reverser
 
-A Vim plugin to reverse the order commits are displayed during a Git interactive rebase.
+A Vim plugin to reverse the order of commits displayed during a git interactive rebase.
 
-This plugin is based on my difficultly with mentally shifting from
-`git log` (where the most recent commit appears at the top)
-to `git rebase --interactive` (where the most recent commit appears at the bottom).
+The default behaviour of git it to display *recent* commits at the top when using `git log` and *older* commits at the top when using `git rebase --interactive`. This can be confusing! Or unsettling!
 
-For more information, see my post on why the [Git Interactive Rebase Order is Wrong](https://salferrarello.com/git-interactive-rebase-order-is-wrong).
-
-## Installation
-
-Install using your favorite plugin manager.
-
-### [vim-plug](https://github.com/junegunn/vim-plug)
-
-- Add `Plug 'salcode/vim-interactive-rebase-reverse'` to .vimrc
-- Run `:PlugInstall`
+This plugin fixes this. It shows you a reversed list of commits when editing the rebase file, but uses the usual order when writing to disk.
 
 ## Screenshots
 
-### Default Interactive Git Rebase Order
+### What your log normally looks like
+![Screenshot of output of git log --oneline command. Recent commits at the top.](images/git_log.png)
 
-For `git log` (on the left), the newest commit is on the top but for `git rebase --interactive` (on the right), the newest commit is on the bottom.
+### What your interactive rebase normally looks like
+![Screenshot of vim editing the interactive rebase file. Older commits are at the top and, after the commit list, you can see a wall of automated comments added by git telling you what every command does.](images/rebase_usual.png)
 
-![Screenshot of Git Log and Git Rebase Interactive showing in one case the newest commit is at the top and in the other case the newest commit is at the bottom.](images/git-rebase-interactive-no-plugin.jpg)
+### What it will look like when using this plugin
+![Screenshot of vim editing the interactive rebase file. The first line as a comment saying 'Reversed by interactive-rebase-reverser!', followed by an empty line, followed by the list of commits. Recent commits are at the top. No comment lines after the commit list can be seen.](images/rebase_plugin_active.png)
 
-### Interactive Git Rebase Order with Plugin
+As a visual cue for making it easier for you to notice when you are editing a regular rebase file, say, in a remote machine, a comment is added to the first line of buffer. The default wall of comments git adds at the bottom of the file is also removed.
 
-The newest commit is on the top for both `git log` and `git rebase --interactive` because this plugin modifies the order for the interactive rebase.
+## Installation
 
-![Screenshot of Git Log and Git Rebase Interactive with Plugin showing in both cases the newest commit is at the top.](images/git-rebase-interactive-w-plugin.jpg)
+Use your favorite plugin manager. For example, for vim-plug:
 
-## Author
+- Add `Plug 'salcode/interactive-rebase-reverser'` to .vimrc
+- Run `:PlugInstall`
 
-[Sal Ferrarello](https://salferrarello.com) / [@salcode](https://twitter.com/salcode)
+## Further reading
+
+[Git Interactive Rebase Order is Wrong](https://salferrarello.com/git-interactive-rebase-order-is-wrong)
