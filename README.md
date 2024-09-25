@@ -23,7 +23,7 @@ As a visual cue for making it easier for you to notice when you are editing a re
 
 Use your favorite plugin manager. For example, for vim-plug:
 
-- Add `Plug 'salcode/interactive-rebase-reverser'` to .vimrc
+- Add `Plug 'returnDanilo/interactive-rebase-reverser'` to .vimrc
 - Run `:PlugInstall`
 
 ## Further reading
